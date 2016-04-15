@@ -1,47 +1,35 @@
 import $ from 'jquery';
+import Rx from 'rxjs/Rx';
 
 const $title = $('#title');
 const $result = $('#result');
 
-let lastQuery = null;
-let lastTimeout = null;
-let nextQueryId = null;
+Rx.Observable.fromEvent($title, 'keyup')
+    .map(e => e.target.value)
+    .distinctUntilChanged()
+    .debounceTime(300)
+    .switchMap(getItems)
+    .subscribe(items => renderItems(items));
 
-$title.on('keyup', e => {
-    const title = e.target.value;
+// const keyups$ = Rx.Observable.fromEvent($title, 'keyup');
+// const queries$ = keyups$
+//     .map(e => e.target.value)
+//     .distinctUntilChanged()
+//     .debounceTime(300)
+//     // .mergeMap(getItems) // flatMap / SelectMany
+//     .switchMap(getItems); //  flatMapLatest
+//
+// queries$.subscribe(items => renderItems(items));
 
-    if (title == lastQuery) {
-        return;
-    }
+function renderItems(items) {
+    $result.empty();
 
-    if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-    }
+    const $items = items.map(item => $(`<li />`).text(item));
 
-    let ourQueryId = ++nextQueryId;
-
-    lastTimeout = window.setTimeout(() => {
-        getItems(title).then(renderItems);
-    }, 500);
-
-
-    function renderItems(items) {
-        if(ourQueryId != nextQueryId){
-            return;
-        }
-
-        $result.empty();
-
-        const $items = items.map(item => $(`<li />`).text(item));
-
-        $result.append($items);
-    }
-});
-
+    $result.append($items);
+}
 
 function getItems(title) {
-    console.log(`QueryString ${title}`);
-
     return new Promise((resolve, reject) => {
         window.setTimeout(() => {
             resolve([
