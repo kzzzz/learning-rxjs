@@ -1,0 +1,5 @@
+{
+  "port": 8181,
+  "root": "/public/build",
+  "file": "index.html"
+}
