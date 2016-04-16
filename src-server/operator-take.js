@@ -1,4 +1,5 @@
 import Rx from 'rxjs/Rx';
+import {createSubscriber} from './lib/util';
 
 const everySecond$ = createInterval(1000);
 // const first5Seonds$ = everySecond$.take(5);
@@ -8,14 +9,6 @@ const subscription = first5Seonds$.subscribe(createSubscriber('one'));
 // setTimeout(()=> {
 //     subscription.unsubscribe();
 // }, 3500);
-
-function createSubscriber(tag) {
-    return {
-        next: (item) => console.log(`${tag}.next(${item})`),
-        error: (error)=> console.log(`${tag}.error(${error})`),
-        complete: ()=> console.log(`${tag}.complete`)
-    }
-}
 
 function createInterval(time) {
     return new Rx.Observable(observer => {
