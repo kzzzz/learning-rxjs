@@ -39,6 +39,7 @@ function take(sourceObservable$, times) {
 
         const subscription = sourceObservable$.subscribe({
             next: item => {
+                // this function [next()] transforms stream
                 observer.next(item);
 
                 if(++count >= times){
@@ -49,6 +50,7 @@ function take(sourceObservable$, times) {
             complete: ()=> observer.complete()
         });
 
+        // this will be called when observers unsubscribes from take operator/observable
         return () => subscription.unsubscribe();
     });
 }

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon --watch build",
-    "start": "live-server --port=3333"
+    "nodemon": "nodemon --watch build/index.js",
+    "live-server": "live-server --port=3333"
   },
   "author": "",
   "license": "ISC",
