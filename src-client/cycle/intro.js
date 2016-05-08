@@ -12,6 +12,9 @@ function main() {
     }
 }
 
+// source: input (read) effects
+// sink: output (write_ effects
+
 // Effects (imperative)
 function DOMEDriver(text$) {
     text$.subscribe(text => {
