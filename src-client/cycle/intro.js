@@ -16,7 +16,7 @@ function main() {
 // sink: output (write_ effects
 
 // Effects (imperative)
-function DOMEDriver(text$) {
+function DOMDriver(text$) {
     text$.subscribe(text => {
         const container = document.querySelector('#app');
         container.textContent = text;
@@ -28,7 +28,7 @@ function consoleLogDriver(msg$) {
 }
 
 const drivers ={
-    DOM: DOMEDriver,
+    DOM: DOMDriver,
     Log: consoleLogDriver
 };
 
@@ -41,3 +41,5 @@ function run(mainFn, effects) {
 
 // Run: apply the effects on the observables
 run(main, drivers);
+
+// Why RxJS: it allows you to specify the dynamic behavior of a value completely at the time of declaration
