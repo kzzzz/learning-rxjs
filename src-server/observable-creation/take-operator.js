@@ -9,6 +9,8 @@ function createInterval$(time) {
             observer.next(++count);
         }, time);
 
+        // observer.complete() will never be called, which means this is a infinite observable
+
         // this will be called when observer unsubscribes.
         return () => clearInterval(interval);
     })
@@ -22,11 +24,12 @@ function take$(sourceObservable$, amount) {
                 observer.next(item);
 
                 if (++count >= amount) {
+                    // let observer know, operation is completed.
                     observer.complete();
                 }
             },
             error: error => console.log(error),
-            complete: () => console.log('take observable done!')
+            complete: () => console.log('when sourceObservable$ done, this will be called')
         });
 
         return () => subscription.unsubscribe();

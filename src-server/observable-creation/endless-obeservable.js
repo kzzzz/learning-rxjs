@@ -1,5 +1,5 @@
 import Rx from 'rxjs/Rx';
-import {createSubscriber} from './lib/util';
+import {createSubscriber} from '../lib/util';
 
 const everySecond$ = createInterval(1000);
 everySecond$.subscribe(createSubscriber('one'));
