@@ -1,2 +1,3 @@
 // require('./observable-creation/interval-observable');
-require('./observable-creation/take-operator');
+// require('./observable-creation/take-operator');
+require('./operators/zip');
