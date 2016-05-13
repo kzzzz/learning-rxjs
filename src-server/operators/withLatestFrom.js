@@ -5,6 +5,14 @@ import Rx from 'rxjs/Rx';
 //     .take(10)
 //     .subscribe(x => console.log(x));
 
-Rx.Observable.from([1,2,3])
-    .withLatestFrom(Rx.Observable.from([1,2,3,4]))
+// Rx.Observable.from([1, 2, 3])
+//     .withLatestFrom(Rx.Observable.from([4, 3, 2, 1]))
+//     .subscribe(x => console.log(x));
+
+// Rx.Observable.from([1, 2, 3])
+//     .combineLatest(Rx.Observable.from([4, 3, 2, 1]))
+//     .subscribe(x => console.log(x));
+
+Rx.Observable.from([1, 2, 3])
+    .combineLatest(Rx.Observable.from([4, 3, 2, 1]), (x, y) => x * y)
     .subscribe(x => console.log(x));
