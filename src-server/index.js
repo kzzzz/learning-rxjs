@@ -6,3 +6,4 @@
 // Egghead
 // require('./egghead/what-is-rxjs');
 // require('./egghead/observable-promise');
+require('./egghead/array-observable-stream');
