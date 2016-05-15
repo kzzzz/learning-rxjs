@@ -1,4 +1,3 @@
-
 var promise = new Promise(resolve => {
     setTimeout(() => {
         console.log('promise timeout hit');
@@ -10,6 +9,8 @@ var promise = new Promise(resolve => {
 promise.then(x => console.log(x));
 
 import Rx from 'rxjs/Rx';
+// observable can be cancelled.
+// can be retried when there is an error
 var obsevable$ = Rx.Observable.create(observer => {
     let timeoutId = setTimeout(()=> {
         console.log('observable timeout hit');
@@ -18,6 +19,7 @@ var obsevable$ = Rx.Observable.create(observer => {
     console.log('observable started');
 
     return () => {
+        console.log('unsubscribed!');
         clearTimeout(timeoutId)
     }
 });

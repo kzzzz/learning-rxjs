@@ -3,4 +3,6 @@
 // require('./operators/zip');
 // require('./operators/withLatestFrom');
 
-require('./egghead/observable-promise');
+// Egghead
+// require('./egghead/what-is-rxjs');
+// require('./egghead/observable-promise');
