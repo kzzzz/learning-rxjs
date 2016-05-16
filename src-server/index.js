@@ -6,4 +6,6 @@
 // Egghead
 // require('./egghead/what-is-rxjs');
 // require('./egghead/observable-promise');
-require('./egghead/array-observable-stream');
+// require('./egghead/array-observable-stream');
+require('./operators/merg-map--switch-map');
+

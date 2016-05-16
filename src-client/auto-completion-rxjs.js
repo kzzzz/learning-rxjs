@@ -6,9 +6,9 @@ const $result = $('#result');
 
 Rx.Observable.fromEvent($title, 'keyup')
     .map(e => e.target.value)
-    .distinctUntilChanged()
+    .distinctUntilChanged()// do nothing unless the search key word changed (arrow key moves will be ignored)
     .debounceTime(300)
-    .switchMap(getItems)
+    .switchMap(getItems) // take last getItems result, if getItems being fired many times during waiting for the async response from te server, ignore the earlier result, and just take the last one
     .subscribe(items => renderItems(items));
 
 // const keyups$ = Rx.Observable.fromEvent($title, 'keyup');
